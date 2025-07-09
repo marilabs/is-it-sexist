@@ -1,0 +1,60 @@
+gesis
+
+online-misogyny-eacl2021-main
+
+dataset.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+*.egg-info/
+.env
+.venv/
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model outputs
+results/
+checkpoints/
+*.bin
+*.pt
+
+# Hugging Face cache
+~/.cache/huggingface/
+.cache/
+huggingface/
+
+# Logs
+*.log
+wandb/
+runs/  # for tensorboard logs
+
+# Data
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+*.zip
+
+# VS Code
+.vscode/
+
+# PyTorch Lightning or other trainer artifacts
+lightning_logs/
+
+# Environment files
+poetry.lock
+Pipfile.lock
+requirements.txt.lock
+
+# System files
+*.swp
+*.bak
