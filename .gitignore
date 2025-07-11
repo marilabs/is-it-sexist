@@ -4,6 +4,8 @@ online-misogyny-eacl2021-main
 
 dataset.csv
 
+.gradio
+
 # Python
 __pycache__/
 *.py[cod]

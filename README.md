@@ -166,3 +166,33 @@ Would you like me to:
 	•	Generate a starter notebook for this?
 	•	Help you choose metrics or hyperparameters?
 	•	Integrate wandb, Gradio, or Spaces?
+
+⸻
+
+## Results 
+
+### Using BERT 
+
+```
+              precision    recall  f1-score   support
+
+           0       0.94      0.88      0.91       362
+           1       0.89      0.94      0.92       362
+
+    accuracy                           0.91       724
+   macro avg       0.91      0.91      0.91       724
+weighted avg       0.91      0.91      0.91       724
+```
+
+### Using RoBERTa
+
+```
+              precision    recall  f1-score   support
+
+           0       0.86      0.88      0.87       501
+           1       0.88      0.86      0.87       503
+
+    accuracy                           0.87      1004
+   macro avg       0.87      0.87      0.87      1004
+weighted avg       0.87      0.87      0.87      1004
+```
