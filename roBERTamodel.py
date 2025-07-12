@@ -3,7 +3,6 @@ import torch
 from datasets import Dataset
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments
 from sklearn.metrics import classification_report
-import numpy as np
 
 # --- Device selection ---
 device = "cpu"
@@ -52,6 +51,8 @@ model = RobertaForSequenceClassification.from_pretrained("roberta-base", num_lab
 # --- Training arguments ---
 training_args = TrainingArguments(
     output_dir="./results",
+    report_to="wandb",      
+    run_name="roberta", 
     logging_dir="./results/logs",
     num_train_epochs=3,
     per_device_train_batch_size=8,
@@ -67,7 +68,6 @@ training_args = TrainingArguments(
     metric_for_best_model="eval_loss",
     greater_is_better=False,
     use_mps_device=torch.backends.mps.is_available(),
-    report_to="none"
 )
 
 # --- Trainer setup ---

@@ -42,6 +42,8 @@ model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_l
 
 training_args = TrainingArguments(
     output_dir="./results",
+    report_to="wandb",      
+    run_name="bert",   
     logging_dir="./results/logs",
     num_train_epochs=3, # Increased epochs for better training
     per_device_train_batch_size=8,

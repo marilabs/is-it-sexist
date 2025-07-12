@@ -1,0 +1,20 @@
+# Core libraries
+torch>=2.0
+transformers>=4.39.0
+datasets>=2.0
+
+# UI
+gradio>=4.0
+
+# Logging / experiment tracking
+wandb>=0.15
+
+# Explainability (optional but handy)
+shap>=0.44.0
+matplotlib>=3.7
+
+# Metrics / evaluation
+scikit-learn>=1.2
+
+# Ensure JSON and encoding support
+pandas>=2.0
