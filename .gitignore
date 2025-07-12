@@ -6,6 +6,9 @@ dataset.csv
 
 .gradio
 
+saved-roberta-model
+saved-model
+
 # Python
 __pycache__/
 *.py[cod]
