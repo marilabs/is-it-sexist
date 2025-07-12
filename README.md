@@ -84,8 +84,20 @@ If you are interested in `wandb`, after setting up your account, run `wandb logi
 ### Actually seeing the app
 1. Generate the dataset! Get the two dataset used in this projects (https://blog.gesis.org/the-call-me-sexist-but-dataset/ and https://github.com/ellamguest/online-misogyny-eacl2021), and then put them in directories `gesis` and `online-misogyny-eacl2021-main`, so that `data_processing.py` can find them 🔎
 2. Execute the `data_processing.py` file so that you have the `dataset.csv` 📁
-3. Now, you need to train the model, the exciting part 😁 Choose if you prefer BERT or RoBERTa: then you will execute `BERTmodel.py` or `roBERTamodel.py` with either ```bash python BERTmodel.py``` or ```bash python roBERTamodel.py``` 🏃
-4. Now, you can run ```bash python app.py``` and test the beaaaaauuuutiful app 😎
+3. Now, you need to train the model, the exciting part 😁 Choose if you prefer BERT or RoBERTa: then you will execute `BERTmodel.py` or `roBERTamodel.py` with either 
+```bash 
+python BERTmodel.py
+``` 
+or 
+```bash 
+python roBERTamodel.py
+```
+🏃
+4. Now, you can run 
+```bash 
+python app.py
+``` 
+and test the beaaaaauuuutiful app 😎
 
 ### Interesting addition
 
