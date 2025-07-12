@@ -29,124 +29,7 @@ First, you need the `pandas` library, so get that if it is not already installed
 Perfect — you’ve got your binary-labeled dataset for sexist vs non-sexist text classification. You’re ready to build your own transformer-based NLP model, like BERT. Here’s a full roadmap from here 👇
 
 ⸻
-
-🧭 Roadmap: From Dataset to Deployed Classifier
-
-⸻
-
-✅ 1. Exploration & Cleaning (optional but good)
-	•	Load the data with pandas
-	•	Check class balance: `df['label'].value_counts()`
-
-	•	Check for NaNs, duplicates, weird formatting:
-```python
-df.isnull().sum()
-df.duplicated().sum()
-```
-	•	Shuffle the dataset: `df = df.sample(frac=1).reset_index(drop=True)`
-
-⸻
-
-✅ 2. Preprocessing for Transformers
-
-Use the Hugging Face datasets library:
-```python
-from datasets import Dataset
-dataset = Dataset.from_pandas(df)
-```
-Then tokenize with BERT’s tokenizer:
-
-```python
-from transformers import BertTokenizer
-
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-
-def tokenize(example):
-    return tokenizer(example["text"], padding="max_length", truncation=True)
-
-dataset = dataset.map(tokenize, batched=True)
-dataset = dataset.rename_column("label", "labels")
-dataset.set_format("torch", columns=["input_ids", "attention_mask", "labels"])
-```
-Split into train/test:
-```python
-dataset = dataset.train_test_split(test_size=0.2)
-```
-
-⸻
-
-✅ 3. Load the Pre-trained BERT Model
-
-```python
-from transformers import BertForSequenceClassification
-
-model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=2)
-```
-
-⸻
-
-✅ 4. Fine-Tune with Hugging Face Trainer
-```python
-from transformers import Trainer, TrainingArguments
-
-training_args = TrainingArguments(
-    output_dir="./results",
-    evaluation_strategy="epoch",
-    save_strategy="epoch",
-    logging_dir="./logs",
-    num_train_epochs=4,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=16,
-    learning_rate=2e-5,
-    weight_decay=0.01
-)
-
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=dataset["train"],
-    eval_dataset=dataset["test"],
-    tokenizer=tokenizer
-)
-
-trainer.train()
-```
-
-⸻
-
-✅ 5. Evaluate the Model
-
-```python
-trainer.evaluate()
-
-For deeper insight:
-
-from sklearn.metrics import classification_report
-
-preds = trainer.predict(dataset["test"])
-print(classification_report(preds.label_ids, preds.predictions.argmax(axis=1)))
-```
-
-⸻
-
-✅ 6. Deploy a Gradio Demo (Optional But Cool)
-```python
-import gradio as gr
-
-def classify(text):
-    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
-    outputs = model(**inputs)
-    pred = outputs.logits.argmax().item()
-    return "Sexist" if pred == 1 else "Not sexist"
-
-gr.Interface(fn=classify, inputs="text", outputs="text").launch()
-````
-
-You can push it to Hugging Face Spaces for others to try 🎯
-
-⸻
-
-✅ 7. (Optional) Track Experiments with Weights & Biases
+🔎 Track Experiments with Weights & Biases
 
 ```pip install wandb```
 
@@ -176,12 +59,12 @@ Would you like me to:
 ```
               precision    recall  f1-score   support
 
-           0       0.94      0.88      0.91       362
-           1       0.89      0.94      0.92       362
+           0       0.91      0.83      0.87       501
+           1       0.84      0.92      0.88       503
 
-    accuracy                           0.91       724
-   macro avg       0.91      0.91      0.91       724
-weighted avg       0.91      0.91      0.91       724
+    accuracy                           0.88      1004
+   macro avg       0.88      0.88      0.88      1004
+weighted avg       0.88      0.88      0.88      1004
 ```
 
 ### Using RoBERTa
